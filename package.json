@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "postcss src/style.css -o src/dist.css",
+    "build": "ENV_DEV=production postcss src/App.css -o src/dist.css",
     "preview": "vite preview"
   },
   "dependencies": {
