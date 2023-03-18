@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "TAILWIND_MODE=watch postcss -i src/App.css  -o src/dist.css --watch",
     "build": "ENV_DEV=production postcss src/App.css -o src/dist.css",
+    
     "preview": "vite preview"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
