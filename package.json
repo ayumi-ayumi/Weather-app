@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "TAILWIND_MODE=watch postcss -i src/App.css  -o src/dist.css --watch",
-    "build": "ENV_DEV=production postcss src/App.css -o src/dist.css",
-    
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {

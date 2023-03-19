@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './dist.css'
+import './App.css'
 import Weather from './Weather.jsx'
 
 function App() {

@@ -1,0 +1,13 @@
+## NOTE
+
+How to refer the environmetal variable on the VIte app?
+- Set a env variable as "VITE_~" on a .env file
+- Refer that as "import.meta.env.VITE_~" on a JS file
+
+To watch and compiling CSS file in real time
+- tailwind v3 has jit mote as default. Only App.css is needed.
+package.json written as below
+ "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+ }
