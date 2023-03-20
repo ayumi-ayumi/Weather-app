@@ -22,13 +22,13 @@ function Weather(props) {
 
   // Time
   const timezone = weather.timezone
-  let date = new Date((new Date().getTime())+ timezone * 1000)
+  let date = new Date((new Date().getTime()) + timezone * 1000)
   const hour = date.getHours().toString().padStart(2, '0');
   const minute = date.getMinutes().toString().padStart(2, '0');
   const time = hour + ":" + minute
 
   const city_name = weather.name
-  const current_temp = Math.round(weather.main.temp) 
+  const current_temp = Math.round(weather.main.temp)
   const max_temp = Math.round(weather.main.temp_max)
   const min_temp = Math.round(weather.main.temp_min)
 
@@ -49,19 +49,26 @@ function Weather(props) {
 
   return (
     <div>
-      <div className='w-1/4 m-5 p-10 h-30 border-0 rounded bg-gradient-to-r from-indigo-500 to-blue-500'>
-        <div className='bg-orange-300 m-1'> {/* Top */}
-          <div>{time}</div> {/* Time */}
-          <div>{city_name}</div> {/* City name */}
-          <img src={icon_URL}></img>
+      <div className='m-5 p-6 h-30 border-0 rounded bg-gradient-to-r from-indigo-500 to-blue-500'>
+        <div> {/* Top */}
+          <div className='flex flex-row place-content-between'>
+            <div className='text-xl'>{city_name}</div> {/* City name */}
+            <div>{time}</div> {/* Time */}
+          </div>
+          <div className='flex justify-center'>
+            <img src={icon_URL}></img>
+          </div>
         </div>
-        <div> {/* Middle */}
-          <div className="text-lg font-medium tracking-widest">{weather.weather[0].main}</div>
+        <div className='flex  flex-row place-content-around'> {/* Middle */}
+          <div className="">{weather.weather[0].description}</div>
           <div>{current_temp}&#8451;</div> {/* Current temp */}
         </div>
         <div> {/* Bottom */}
+        <div className='flex  flex-row place-content-around'>
           <div>H:{max_temp}&#8451;</div> {/* Max temp */}
           <div>L:{min_temp}&#8451;</div> {/* Min temp */}
+
+        </div>
           <div>{sunrise_time}</div> {/* Sunset time  */}
           <div>{sunset_time}</div> {/* Sunrise time */}
         </div>
