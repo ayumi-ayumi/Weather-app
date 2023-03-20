@@ -11,3 +11,5 @@ package.json written as below
     "dev": "vite",
     "build": "vite build",
  }
+
+ It is just on the wrong line, and after correcting it works
