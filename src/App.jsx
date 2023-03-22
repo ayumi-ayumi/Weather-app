@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App font-body bg-orange-50">
       <Add_city
         add_city_name={addCityName}
         handleChange={handleChange}

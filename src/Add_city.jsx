@@ -13,7 +13,7 @@ function Add_city(props) {
 
   return (
     <div>
-      <div className="m-5 text-center  ">
+      <div className="p-5 text-center  ">
         <form>
           <input
             type="text"
@@ -24,7 +24,7 @@ function Add_city(props) {
           ></input>
           <button 
           type="submit" 
-          className="border-2 h-10 w-10 rounded text-xl" 
+          className="border-2 h-10 w-10 rounded" 
           onClick={props.add_new_city}
           >+</button>
         </form>

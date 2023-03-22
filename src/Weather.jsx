@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 // import './App.css'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 
 function Weather(props) {
@@ -20,13 +23,33 @@ function Weather(props) {
     return <div></div>
   }
 
+  // const now = dayjs(); // 現在の日付情報を取得
+  // console.log(dayjs().tz('Asia/Tokyo').format())
+  
   // Time
   const timezone = weather.timezone
-  let date = new Date((new Date().getTime()) + timezone * 1000)
-  console.log(date)
-  const hour = date.getHours().toString().padStart(2, '0');
-  const minute = date.getMinutes().toString().padStart(2, '0');
-  const time = hour + ":" + minute
+  const hour_timezone = timezone / 3600
+  // console.log(timezone)
+  const date = dayjs.utc().utcOffset(timezone/60)
+  const current_time = date.format("HH:mm")
+  const hour = date.hour()
+  console.log(hour)
+  // console.log(date);
+  // console.log(now.utc().utcOffset(3600).format('h:mm A'));
+
+  // let date = new Date().toUTCString()
+  // let date = new Date((new Date().getTime()) + (timezone * 1000))
+  // console.log(date)
+  // const date = new Date().toUTCString() //UTC(GMT) time
+  // const date = utcTime.getTime() + (timezone/3600)*1000
+  // const date = utcTime
+  // const date = utcTime.getTime()
+  // console.log(utcTime.getTime())
+  // let date = new Date(dt*1000)
+  // console.log(date)
+  // const hour = date.getHours().toString().padStart(2, '0');
+  // const minute = date.getMinutes().toString().padStart(2, '0');
+  // const time = hour + ":" + minute
 
   // City name
   const city_name = weather.name
@@ -55,8 +78,8 @@ function Weather(props) {
   // background color
   const morning_bgc = "bg-gradient-to-r from-yellow-300//75 to-yellow-500//75";
   const day_bgc = "bg-gradient-to-r from-cyan-300/75 to-blue-500/75 ";
-  const evening_bgc = "bg-gradient-to-r from-orange-400/75 to-blue-400/75"
-  const night_bgc = "bg-gradient-to-r from-blue-600/75 to-violet-900/75"
+  const evening_bgc = "bg-gradient-to-br from-amber-600/75 to-purple-900/75 "
+  const night_bgc = "bg-gradient-to-br from-violet-900/75 to-indigo-900/75 "
 
   const backGroundColor = 
   hour >= sunset_hour+1 ? night_bgc: // 19-23
@@ -66,11 +89,11 @@ function Weather(props) {
 
   return (
     <div>
-      <div className={`m-3 p-6 h-30 rounded-md ${backGroundColor}`}>
+      <div className={`m-3 p-6 h-30 rounded-md shadow-xl ${backGroundColor}`}>
         <div> {/* Top */}
           <div className='flex flex-row place-content-between'>
             <div className='text-xl'>{city_name}</div> {/* City name */}
-            <div>{time}</div> {/* Time */}
+            <div>{current_time}</div> {/* Time */}
           </div>
           <div className='flex justify-center'>
             <img src={icon_URL}></img>
@@ -100,3 +123,5 @@ function Weather(props) {
 }
 
 export default Weather
+
+// {moment.unix(currentWeather.dt).format('dddd HH:mm A')}
