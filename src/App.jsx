@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Weather from './Weather.jsx'
 import Add_city from './Add_city.jsx'
+import useFetchWeatherAPI from './useFetchWeatherAPI'
 
 function App() {
 
 
   const [addCityName, setAddCityName] = useState("")
-  const [cityListArr, setCityListArr] = useState(["Tokyo", "Berlin", ])
+  const [cityListArr, setCityListArr] = useState([{key:0, value:"Tokyo"},])
+  // const [cityListArr, setCityListArr] = useFetchWeatherAPI("")
 
   function handleChange(event) {
     setAddCityName(prevList => event.target.value)
@@ -15,7 +17,11 @@ function App() {
 
   function add_new_city(e) {
     e.preventDefault();
-    const newCity = addCityName
+    const newCity = {
+      key: Math.random(),
+      value:addCityName
+    }
+    
     const newListArr = [...cityListArr, newCity];
     if (addCityName !== "") {
       setCityListArr(newListArr);
@@ -41,7 +47,7 @@ function App() {
       />
       <div className='grid lg:grid-cols-4 sm:grid-cols-2  grid-flow-row-dense mx-10'>
         {cityListArr.map((city) => (
-          <Weather city_name={city} />
+          <Weather city_name={city.value} />
         ))}
       </div>
     </div>

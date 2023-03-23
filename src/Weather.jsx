@@ -66,8 +66,6 @@ function Weather(props) {
   hour >= sunrise_hour && hour <= 11 ? morning_bgc : //6-11
   day_bgc;
 
-  console.log(`hour${hour}sunrise${sunrise_hour}sunset${sunset_hour}`)
-  console.log(backGroundColor)
 
 
 
