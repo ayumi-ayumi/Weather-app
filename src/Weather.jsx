@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 // import './App.css'
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import useFetchWeatherAPI from './useFetchWeatherAPI';
 dayjs.extend(utc);
 
 
 function Weather(props) {
+
+  // FetchWeatherAPI()
   const [weather, setWeather] = useState()
   const [loading, setLoading] = useState(true);
 
@@ -23,10 +26,8 @@ function Weather(props) {
     return <div></div>
   }
 
-  // const now = dayjs(); // 現在の日付情報を取得
-  // console.log(dayjs().tz('Asia/Tokyo').format())
-  
-  // Time
+  // const weather = useFetchWeatherAPI()  
+// Time
   const timezone = weather.timezone
   const date = dayjs.utc().utcOffset(timezone/60)
   const current_time = date.format("HH:mm")
@@ -60,10 +61,15 @@ function Weather(props) {
   const night_bgc = "bg-gradient-to-br from-violet-900/75 to-indigo-900/75 "
 
   const backGroundColor = 
-  hour >= sunset_hour+1 ? night_bgc: // 19-23
-  hour >= sunset_hour-1 && hour <= sunset_hour+1 ? evening_bgc : // 16-19
+  hour <= sunrise_hour || hour >= sunset_hour+2 ? night_bgc: // 19-23
+  hour <= sunset_hour+1 && hour >= sunset_hour-1 ? evening_bgc : // 16-19
   hour >= sunrise_hour && hour <= 11 ? morning_bgc : //6-11
   day_bgc;
+
+  console.log(`hour${hour}sunrise${sunrise_hour}sunset${sunset_hour}`)
+  console.log(backGroundColor)
+
+
 
   return (
     <div>
@@ -101,5 +107,3 @@ function Weather(props) {
 }
 
 export default Weather
-
-// {moment.unix(currentWeather.dt).format('dddd HH:mm A')}

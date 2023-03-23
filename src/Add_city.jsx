@@ -24,7 +24,7 @@ function Add_city(props) {
           ></input>
           <button 
           type="submit" 
-          className="border-2 h-10 w-10 rounded" 
+          className="border-2 h-10 w-10 rounded bg-slate-50 hover:bg-sky-200/50 duration-200" 
           onClick={props.add_new_city}
           >+</button>
         </form>
