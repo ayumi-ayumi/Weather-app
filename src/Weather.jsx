@@ -20,7 +20,7 @@ function Weather(props) {
         // console.log(result)
         setLoading(false);
       });
-  }, []);
+  }, [props.city_name]);
 
   if (loading) {
     return <div></div>
