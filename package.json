@@ -1,12 +1,15 @@
 {
+  "homepage": "https://ayumi-ayumi.github.io/Weather-app/",
   "name": "weather-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "cross-env PUBLIC_URL=/Weather-app vite build",
+    "postbuild": "cp build/index.html build/404.html",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
@@ -19,6 +22,8 @@
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
+    "cross-env": "^7.0.3",
+    "gh-pages": "^5.0.0",
     "postcss-cli": "^10.1.0",
     "tailwindcss": "^3.2.7",
     "vite": "^4.1.0"

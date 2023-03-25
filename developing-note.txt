@@ -13,3 +13,6 @@ package.json written as below
  }
 
  It is just on the wrong line, and after correcting it works
+
+ How to deploy on gh-pages 
+ - "deploy": "gh-pages -d dist" on package.json
