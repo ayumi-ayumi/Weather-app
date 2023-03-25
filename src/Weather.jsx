@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
-// import './App.css'
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import useFetchWeatherAPI from './useFetchWeatherAPI';
 dayjs.extend(utc);
 
 
 function Weather(props) {
-
-  // FetchWeatherAPI()
   const [weather, setWeather] = useState()
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +13,6 @@ function Weather(props) {
       .then(res => res.json())
       .then(result => {
         setWeather(result);
-        // console.log(result)
         setLoading(false);
       });
   }, [props.city_name]);
@@ -26,7 +21,6 @@ function Weather(props) {
     return <div></div>
   }
 
-  // const weather = useFetchWeatherAPI()  
 // Time
   const timezone = weather.timezone
   const date = dayjs.utc().utcOffset(timezone/60)
@@ -65,9 +59,6 @@ function Weather(props) {
   hour <= sunset_hour+1 && hour >= sunset_hour-1 ? evening_bgc : // 16-19
   hour >= sunrise_hour && hour <= 11 ? morning_bgc : //6-11
   day_bgc;
-
-
-
 
   return (
     <div>
