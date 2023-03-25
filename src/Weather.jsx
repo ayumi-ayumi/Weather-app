@@ -25,7 +25,7 @@ function Weather(props) {
   const timezone = weather.timezone
   const date = dayjs.utc().utcOffset(timezone/60)
   const current_time = date.format("HH:mm")
-  const hour = date.hour()
+  const current_time_unix = date.unix()
   // City name
   const city_name = weather.name
 
@@ -37,12 +37,12 @@ function Weather(props) {
   // Sunrise time
   const sunrise_time_date = dayjs.unix(weather.sys.sunrise).utcOffset(timezone/60)
   const sunrise_time = sunrise_time_date.format("HH:mm")
-  const sunrise_hour = sunrise_time_date.hour()
+  const sunrise_time_unix = sunrise_time_date.unix()
   
   // Sunset time
   const sunset_time_date = dayjs.unix(weather.sys.sunset).utcOffset(timezone/60)
   const sunset_time = sunset_time_date.format("HH:mm")
-  const sunset_hour = sunset_time_date.hour()
+  const sunset_time_unix = sunset_time_date.unix()
 
   // Weather condition icon
   const icon_id = weather.weather[0].icon + "@2x.png"
@@ -55,9 +55,9 @@ function Weather(props) {
   const night_bgc = "bg-gradient-to-br from-violet-900/75 to-indigo-900/75 "
 
   const backGroundColor = 
-  hour <= sunrise_hour || hour >= sunset_hour+2 ? night_bgc: // 19-23
-  hour <= sunset_hour+1 && hour >= sunset_hour-1 ? evening_bgc : // 16-19
-  hour >= sunrise_hour && hour <= 11 ? morning_bgc : //6-11
+  current_time_unix <= sunrise_time_unix || current_time_unix >= sunset_time_unix + (3600*1) ? night_bgc: // 19-23
+  current_time_unix <= sunset_time_unix + (3600*1) && current_time_unix >= sunset_time_unix - (3600*1) ? evening_bgc : // 16-19
+  current_time_unix >= sunrise_time_unix && current_time_unix <= 11 ? morning_bgc : //6-11
   day_bgc;
 
   return (
@@ -80,12 +80,10 @@ function Weather(props) {
         <div className='flex flex-row place-content-around mb-2'>
           <div>H:{max_temp}&#8451;</div> {/* Max temp */}
           <div>L:{min_temp}&#8451;</div> {/* Min temp */}
-
         </div>
         <div className='flex  flex-row place-content-around'>
           <div>Sunrise {sunrise_time}</div> {/* Sunset time  */}
           <div>Sunset {sunset_time}</div> {/* Sunrise time */}
-
         </div>
         </div>
 
