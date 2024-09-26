@@ -15,10 +15,12 @@ function App() {
         cityListArr={cityListArr}
         setCityListArr={setCityListArr}
       />
-      <div className='grid lg:grid-cols-4 sm:grid-cols-2  grid-flow-row-dense mx-10'>
+      <div className='container mx-auto'>
+      <div className='grid lg:grid-cols-3 sm:grid-cols-2  grid-flow-row-dense px-15'>
       {cityListArr.map((city) => (
-          <Weather city_name={city.value} />
-        ))}
+        <Weather city_name={city.value} key={city.key}/>
+      ))}
+      </div>
       </div>
     </div>
   )

@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
-
 function Weather(props) {
   const [weather, setWeather] = useState()
   const [loading, setLoading] = useState(true);

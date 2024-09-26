@@ -3,10 +3,6 @@ import { useState, useEffect } from 'react';
 function Add_city(props) {
   const [addCityName, setAddCityName] = useState("")
 
-  function handleChange(event) {
-    setAddCityName(prev => event.target.value)
-  }
-
   function add_new_city(e) {
     e.preventDefault();
     const newCity = {
@@ -33,7 +29,7 @@ function Add_city(props) {
             type="text"
             placeholder="Add a city"
             className="border-2 mr-4 w-1/2 rounded h-10 p-2"
-            onChange={handleChange}
+            onChange={(e)=>setAddCityName(e.target.value)}
             value={addCityName}
           ></input>
           <button 
